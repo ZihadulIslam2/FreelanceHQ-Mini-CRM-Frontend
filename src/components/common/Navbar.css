@@ -9,6 +9,7 @@
   font-family: 'Inter', sans-serif;
   border-bottom: 1px solid var(--border-color);
   position: relative;
+  z-index: 50;
 }
 
 .navbar__left {
@@ -303,6 +304,7 @@
     transition: all 0.3s ease;
     box-shadow: var(--card-shadow);
     border-bottom: 1px solid var(--border-color);
+    z-index: 40;
   }
 
   .navbar__right.mobile-open {

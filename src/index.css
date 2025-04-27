@@ -143,13 +143,14 @@ button:hover:not(:disabled) {
   pointer-events: none;
 }
 
-/* Enhanced Auth Container */
+/* Auth Form Styles */
 .auth-container {
   @apply max-w-md mx-auto p-8 rounded-xl shadow-lg relative z-10;
   background-color: var(--card-background);
   border: 1px solid var(--border-color);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  margin-top: 2rem;
 }
 
 .auth-container::before {

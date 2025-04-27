@@ -47,7 +47,6 @@ export default function Navbar() {
         <ThemeToggle />
         {!loading && !isAuthenticated && (
           <>
-            <Link to="/about" className="navbar__link">About</Link>
             <Link to="/signup" className="navbar__link">Signup</Link>
             <Link to="/login" className="navbar__link">Login</Link>
           </>

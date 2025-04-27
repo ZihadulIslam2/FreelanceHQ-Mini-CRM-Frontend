@@ -4,6 +4,8 @@ import { Client } from '../../types/client'
 import { Project } from '../../types/project'
 import * as clientService from '../../services/clientService'
 import * as projectService from '../../services/projectService'
+import { InteractionLogTimeline } from './InteractionLogTimeline'
+import { AddInteractionLogForm } from './AddInteractionLogForm'
 
 export const ClientDetails = () => {
   const { id } = useParams()
@@ -12,6 +14,7 @@ export const ClientDetails = () => {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [refreshLogs, setRefreshLogs] = useState(0)
 
   useEffect(() => {
     const loadClientAndProjects = async () => {
@@ -47,6 +50,10 @@ export const ClientDetails = () => {
     }
   }
 
+  const handleLogAdded = () => {
+    setRefreshLogs(prev => prev + 1)
+  }
+
   if (loading) return <div className="text-center">Loading...</div>
   if (error) return <div className="text-red-500 text-center">{error}</div>
   if (!client) return <div className="text-center">Client not found</div>
@@ -80,6 +87,15 @@ export const ClientDetails = () => {
             <p className="text-sm text-gray-600">Phone</p>
             <p className="font-medium">{client.phone}</p>
           </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div>
+          <InteractionLogTimeline key={refreshLogs} clientId={Number(id)} />
+        </div>
+        <div>
+          <AddInteractionLogForm clientId={Number(id)} onLogAdded={handleLogAdded} />
         </div>
       </div>
 

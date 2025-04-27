@@ -15,6 +15,7 @@ import { ClientForm } from './components/clients/ClientForm'
 import { ClientDetails } from './components/clients/ClientDetails'
 import { ProjectForm } from './components/projects/ProjectForm'
 import { ThemeToggle } from './components/common/ThemeToggle'
+import { RemindersPage } from './components/reminders/RemindersPage'
 import './App.css'
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -58,6 +59,12 @@ const Dashboard = () => {
               >
                 Clients
               </Link>
+              <Link
+                to="/reminders"
+                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
+              >
+                Reminders
+              </Link>
             </div>
             <div className="flex items-center space-x-4">
               <ThemeToggle />
@@ -83,6 +90,7 @@ const Dashboard = () => {
           <Route path="/clients/:id/edit" element={<ClientForm />} />
           <Route path="/clients/:clientId/projects/new" element={<ProjectForm />} />
           <Route path="/clients/:clientId/projects/:projectId/edit" element={<ProjectForm />} />
+          <Route path="/reminders" element={<RemindersPage />} />
         </Routes>
       </div>
     </div>

@@ -6,6 +6,7 @@ import {
   Link,
 } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
+import { ThemeProvider } from './contexts/ThemeContext'
 import { useAuth } from './hooks/useAuth'
 import { LoginForm } from './components/auth/LoginForm'
 import { SignupForm } from './components/auth/SignupForm'
@@ -13,6 +14,7 @@ import { ClientList } from './components/clients/ClientList'
 import { ClientForm } from './components/clients/ClientForm'
 import { ClientDetails } from './components/clients/ClientDetails'
 import { ProjectForm } from './components/projects/ProjectForm'
+import { ThemeToggle } from './components/common/ThemeToggle'
 import './App.css'
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -39,28 +41,29 @@ const Dashboard = () => {
   const { logout } = useAuth()
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow-sm">
+    <div className="min-h-screen bg-background-primary">
+      <nav className="bg-background-secondary shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
               <Link
                 to="/dashboard"
-                className="flex items-center px-2 text-gray-700 hover:text-gray-900"
+                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
               >
                 Dashboard
               </Link>
               <Link
                 to="/clients"
-                className="flex items-center px-2 text-gray-700 hover:text-gray-900"
+                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
               >
                 Clients
               </Link>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-4">
+              <ThemeToggle />
               <button
                 onClick={logout}
-                className="ml-4 px-4 py-2 text-sm text-gray-700 hover:text-gray-900"
+                className="ml-4 px-4 py-2 text-sm text-text-primary hover:text-text-secondary"
               >
                 Logout
               </button>
@@ -88,50 +91,52 @@ const Dashboard = () => {
 
 const App = () => {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-                  <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-                    <h1 className="text-2xl font-bold mb-6 text-center">
-                      Login
-                    </h1>
-                    <LoginForm />
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <div className="min-h-screen bg-background-primary flex items-center justify-center">
+                    <div className="max-w-md w-full bg-background-secondary p-8 rounded-lg shadow-md">
+                      <h1 className="text-2xl font-bold mb-6 text-center text-text-primary">
+                        Login
+                      </h1>
+                      <LoginForm />
+                    </div>
                   </div>
-                </div>
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <PublicRoute>
-                <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-                  <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-                    <h1 className="text-2xl font-bold mb-6 text-center">
-                      Sign Up
-                    </h1>
-                    <SignupForm />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <div className="min-h-screen bg-background-primary flex items-center justify-center">
+                    <div className="max-w-md w-full bg-background-secondary p-8 rounded-lg shadow-md">
+                      <h1 className="text-2xl font-bold mb-6 text-center text-text-primary">
+                        Sign Up
+                      </h1>
+                      <SignupForm />
+                    </div>
                   </div>
-                </div>
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/*"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </AuthProvider>
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/*"
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
 

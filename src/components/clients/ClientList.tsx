@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { Client } from '../../types/client'
 import * as clientService from '../../services/clientService'
 
@@ -73,20 +73,33 @@ export const ClientList = () => {
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {clients.map((client) => (
-              <tr key={client.id}>
-                <td className="px-6 py-4 whitespace-nowrap">{client.name}</td>
+              <tr key={client.id} className="hover:bg-gray-50">
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <Link
+                    to={`/clients/${client.id}`}
+                    className="text-blue-600 hover:text-blue-800 font-medium"
+                  >
+                    {client.name}
+                  </Link>
+                </td>
                 <td className="px-6 py-4 whitespace-nowrap">{client.email}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{client.phone}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <Link
+                    to={`/clients/${client.id}/projects/new`}
+                    className="text-green-600 hover:text-green-800 mr-4"
+                  >
+                    Add Project
+                  </Link>
                   <button
                     onClick={() => navigate(`/clients/${client.id}/edit`)}
-                    className="text-blue-600 hover:text-blue-900 mr-4"
+                    className="text-blue-600 hover:text-blue-800 mr-4"
                   >
                     Edit
                   </button>
                   <button
                     onClick={() => handleDelete(client.id)}
-                    className="text-red-600 hover:text-red-900"
+                    className="text-red-600 hover:text-red-800"
                   >
                     Delete
                   </button>

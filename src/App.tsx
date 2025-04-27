@@ -11,6 +11,8 @@ import { LoginForm } from './components/auth/LoginForm'
 import { SignupForm } from './components/auth/SignupForm'
 import { ClientList } from './components/clients/ClientList'
 import { ClientForm } from './components/clients/ClientForm'
+import { ClientDetails } from './components/clients/ClientDetails'
+import { ProjectForm } from './components/projects/ProjectForm'
 import './App.css'
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -74,7 +76,10 @@ const Dashboard = () => {
           />
           <Route path="/clients" element={<ClientList />} />
           <Route path="/clients/new" element={<ClientForm />} />
+          <Route path="/clients/:id" element={<ClientDetails />} />
           <Route path="/clients/:id/edit" element={<ClientForm />} />
+          <Route path="/clients/:clientId/projects/new" element={<ProjectForm />} />
+          <Route path="/clients/:clientId/projects/:projectId/edit" element={<ProjectForm />} />
         </Routes>
       </div>
     </div>

@@ -1,0 +1,252 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  font-family: 'Inter', sans-serif;
+}
+
+.navbar__left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar__logo {
+  width: 36px;
+  height: 32px;
+  margin-right: 8px;
+}
+
+.navbar__brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-right: 2rem;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__links li {
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar__links li:hover {
+  color: #3b82f6;
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.navbar__link {
+  color: #555;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navbar__link:hover {
+  color: #3b82f6;
+}
+
+.navbar__btn {
+  font-size: 1rem;
+  padding: 0.5rem 1.4rem;
+  border-radius: 2rem;
+  border: 2px solid #6366f1;
+  background: transparent;
+  color: #6366f1;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navbar__btn--filled {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  margin-left: 0.5rem;
+}
+
+.navbar__btn--filled:hover {
+  background: #4f46e5;
+}
+
+.navbar__btn--outline:hover {
+  background: #f0f4ff;
+}
+
+.navbar__arrow {
+  margin-left: 0.5rem;
+  font-size: 1.2em;
+}
+
+.navbar__menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.navbar__dot {
+  width: 6px;
+  height: 6px;
+  background: #888;
+  border-radius: 50%;
+  margin: 2px 0;
+}
+
+.navbar__dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.navbar__dropdown-toggle {
+  color: #2563eb;
+  font-weight: 500;
+  background: #f1f5ff;
+  border-radius: 1.5rem;
+  padding: 0.4rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-right: 0.5rem;
+}
+
+.navbar__dropdown-toggle:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.navbar__dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(37,99,235,0.12);
+  z-index: 100;
+  padding: 0.5rem 0;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.navbar__dropdown-item {
+  padding: 0.7rem 1.5rem;
+  color: #2563eb;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+  border: none;
+  background: none;
+  text-align: left;
+  width: 100%;
+  display: block;
+}
+
+.navbar__dropdown-item:hover {
+  background: #f1f5ff;
+  color: #1d4ed8;
+}
+
+.navbar__dropdown-divider {
+  height: 1px;
+  background: #e0e7ff;
+  margin: 0.3rem 0;
+}
+
+.navbar__link {
+  color: #2563eb;
+  font-weight: 500;
+  background: #f1f5ff;
+  border-radius: 1.5rem;
+  padding: 0.4rem 1.2rem;
+  margin-right: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.navbar__link:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+.navbar__btn {
+  font-size: 1rem;
+  padding: 0.5rem 1.4rem;
+  border-radius: 2rem;
+  border: 2px solid #6366f1;
+  background: #fff;
+  color: #6366f1;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-left: 0.5rem;
+}
+
+.navbar__btn--outline {
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  background: #fff;
+}
+
+.navbar__btn--outline:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .navbar__links {
+    display: none;
+  }
+  .navbar__brand {
+    margin-right: 0.5rem;
+  }
+  .navbar__dropdown-menu {
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+  .navbar__right {
+    gap: 0.5rem;
+  }
+  .navbar__btn {
+    padding: 0.4rem 1rem;
+    font-size: 0.95rem;
+  }
+  .navbar__logo {
+    width: 28px;
+    height: 24px;
+  }
+} 

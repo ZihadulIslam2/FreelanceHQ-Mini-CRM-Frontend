@@ -12,11 +12,13 @@
   --accent-hover: #2563eb;
   --error-color: #ef4444;
   --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
 }
 
 .dark {
-  --background-primary: #1f2937;
-  --background-secondary: #111827;
+  --background-primary: #111827;
+  --background-secondary: #1f2937;
   --text-primary: #f9fafb;
   --text-secondary: #d1d5db;
   --border-color: #374151;
@@ -24,10 +26,79 @@
   --accent-hover: #3b82f6;
   --error-color: #f87171;
   --success-color: #34d399;
+  --warning-color: #fbbf24;
+  --info-color: #60a5fa;
 }
 
 body {
   background-color: var(--background-primary);
   color: var(--text-primary);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Form focus styles */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-color);
+  transition: box-shadow 0.2s ease;
+}
+
+/* Button hover effects */
+button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Card hover effects */
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading skeleton animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--background-secondary) 25%,
+    var(--border-color) 50%,
+    var(--background-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }

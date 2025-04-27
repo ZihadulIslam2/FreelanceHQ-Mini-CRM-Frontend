@@ -4,6 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginCredentials } from '../../types/auth'
 import { loginSchema } from './validationSchemas'
 import { useAuth } from '../../hooks/useAuth'
+import { FormInput } from '../common/FormInput'
+import { Button } from '../common/Button'
+import { Container } from '../common/Container'
 
 export const LoginForm = () => {
   const { login } = useAuth()
@@ -27,46 +30,43 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium">
-          Email
-        </label>
-        <input
-          id="email"
+    <Container maxWidth="sm">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <FormInput
+          label="Email"
+          name="email"
           type="email"
-          {...register('email')}
-          className="mt-1 block w-full rounded-md border p-2"
+          register={register}
+          error={errors.email}
+          placeholder="Enter your email"
+          required
         />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-        )}
-      </div>
 
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium">
-          Password
-        </label>
-        <input
-          id="password"
+        <FormInput
+          label="Password"
+          name="password"
           type="password"
-          {...register('password')}
-          className="mt-1 block w-full rounded-md border p-2"
+          register={register}
+          error={errors.password}
+          placeholder="Enter your password"
+          required
         />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+
+        {error && (
+          <div className="p-3 bg-red-50 border border-red-200 rounded-md text-red-600 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400">
+            {error}
+          </div>
         )}
-      </div>
 
-      {error && <div className="text-red-500 text-sm">{error}</div>}
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 disabled:bg-blue-300"
-      >
-        {isSubmitting ? 'Logging in...' : 'Login'}
-      </button>
-    </form>
+        <Button
+          type="submit"
+          isLoading={isSubmitting}
+          fullWidth
+          size="lg"
+        >
+          Sign In
+        </Button>
+      </form>
+    </Container>
   )
 }

@@ -87,16 +87,28 @@ const Dashboard: React.FC = () => {
   };
 
   if (loading) {
-    return <Typography>Loading...</Typography>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
+        <Typography variant="h5" color="text.secondary">
+          Loading dashboard data...
+        </Typography>
+      </Box>
+    );
   }
 
   if (!dashboardData) {
-    return <Typography>No data available</Typography>;
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
+        <Typography variant="h5" color="text.secondary">
+          Unable to load dashboard data
+        </Typography>
+      </Box>
+    );
   }
 
   return (
-    <Box sx={{ flexGrow: 1, p: 3 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box sx={{ flexGrow: 1, p: 10 }}>
+      <Typography variant="h4" gutterBottom sx={{ mb: 6 }}>
         Dashboard
       </Typography>
       

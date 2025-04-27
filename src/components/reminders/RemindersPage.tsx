@@ -12,10 +12,10 @@ export const RemindersPage: React.FC = () => {
   const [selectedReminder, setSelectedReminder] = useState<Reminder | undefined>();
   const [loading, setLoading] = useState(false);
 
-  const handleCreate = async (values: CreateReminderDto) => {
+  const handleCreate = async (values: CreateReminderDto | UpdateReminderDto) => {
     setLoading(true);
     try {
-      await reminderService.create(values);
+      await reminderService.create(values as CreateReminderDto);
       setIsModalVisible(false);
     } catch (error) {
       console.error('Error creating reminder:', error);
@@ -24,11 +24,11 @@ export const RemindersPage: React.FC = () => {
     }
   };
 
-  const handleUpdate = async (values: UpdateReminderDto) => {
+  const handleUpdate = async (values: CreateReminderDto | UpdateReminderDto) => {
     if (!selectedReminder) return;
     setLoading(true);
     try {
-      await reminderService.update(selectedReminder.id, values);
+      await reminderService.update(selectedReminder.id, values as UpdateReminderDto);
       setIsModalVisible(false);
       setSelectedReminder(undefined);
     } catch (error) {

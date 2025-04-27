@@ -1,34 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import flexiLogo from '../../assets/flexicrm_icon.png';
 import { ThemeToggle } from './ThemeToggle';
-import * as clientService from '../../services/clientService';
-import * as projectService from '../../services/projectService';
-import { Client } from '../../types/client';
-import { Project } from '../../types/project';
 import './Navbar.css';
 
-const Navbar = () => {
-  const { isAuthenticated, logout, loading } = useAuth();
-  const [clients, setClients] = useState<Client[]>([]);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [projectDropdown, setProjectDropdown] = useState(false);
-  const navigate = useNavigate();
+export default function Navbar() {
+  const { isAuthenticated, logout } = useAuth();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      clientService.getAllClients().then(setClients);
-    }
+    const initializeNavbar = async () => {
+      try {
+        setLoading(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    initializeNavbar();
   }, [isAuthenticated]);
-
-  useEffect(() => {
-    if (isAuthenticated && clients.length > 0) {
-      // Fetch all projects for all clients
-      Promise.all(clients.map(client => projectService.getAllProjects(client.id)))
-        .then(results => setProjects(results.flat()));
-    }
-  }, [isAuthenticated, clients]);
 
   return (
     <nav className="navbar">
@@ -58,6 +49,4 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
-
-export default Navbar; 
+} 

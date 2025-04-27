@@ -4,9 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { LoginCredentials } from '../../types/auth'
 import { loginSchema } from './validationSchemas'
 import { useAuth } from '../../hooks/useAuth'
-import { FormInput } from '../common/FormInput'
-import { Button } from '../common/Button'
-import { Container } from '../common/Container'
 
 export const LoginForm = () => {
   const { login } = useAuth()

@@ -16,6 +16,7 @@ import { ClientDetails } from './components/clients/ClientDetails'
 import { ProjectForm } from './components/projects/ProjectForm'
 import { ThemeToggle } from './components/common/ThemeToggle'
 import { RemindersPage } from './components/reminders/RemindersPage'
+import Dashboard from './components/dashboard/Dashboard'
 import './App.css'
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -38,7 +39,7 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
   return !isAuthenticated ? <>{children}</> : <Navigate to="/dashboard" />
 }
 
-const Dashboard = () => {
+const DashboardLayout = () => {
   const { logout } = useAuth()
 
   return (
@@ -46,22 +47,22 @@ const Dashboard = () => {
       <nav className="bg-background-secondary shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
-            <div className="flex">
+            <div className="flex space-x-4">
               <Link
                 to="/dashboard"
-                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
+                className="flex items-center px-3 py-2 rounded-md text-text-primary hover:bg-background-primary hover:text-text-secondary"
               >
                 Dashboard
               </Link>
               <Link
                 to="/clients"
-                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
+                className="flex items-center px-3 py-2 rounded-md text-text-primary hover:bg-background-primary hover:text-text-secondary"
               >
                 Clients
               </Link>
               <Link
                 to="/reminders"
-                className="flex items-center px-2 text-text-primary hover:text-text-secondary"
+                className="flex items-center px-3 py-2 rounded-md text-text-primary hover:bg-background-primary hover:text-text-secondary"
               >
                 Reminders
               </Link>
@@ -80,10 +81,7 @@ const Dashboard = () => {
       </nav>
       <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <Routes>
-          <Route
-            path="/dashboard"
-            element={<div>Welcome to your dashboard</div>}
-          />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/clients" element={<ClientList />} />
           <Route path="/clients/new" element={<ClientForm />} />
           <Route path="/clients/:id" element={<ClientDetails />} />
@@ -137,7 +135,7 @@ const App = () => {
               path="/*"
               element={
                 <PrivateRoute>
-                  <Dashboard />
+                  <DashboardLayout />
                 </PrivateRoute>
               }
             />

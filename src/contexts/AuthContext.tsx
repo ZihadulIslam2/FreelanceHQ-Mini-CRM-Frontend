@@ -1,7 +1,23 @@
-import { useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { LoginCredentials, SignupCredentials, AuthState } from '../types/auth'
 import * as authService from '../services/authService'
-import { AuthContext } from './context'
+
+interface AuthContextType extends AuthState {
+  loading: boolean;
+  login: (credentials: LoginCredentials) => Promise<void>;
+  signup: (credentials: SignupCredentials) => Promise<void>;
+  logout: () => void;
+}
+
+export const AuthContext = createContext<AuthContextType>({
+  user: null,
+  token: null,
+  isAuthenticated: false,
+  loading: true,
+  login: async () => {},
+  signup: async () => {},
+  logout: () => {},
+});
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, setState] = useState<AuthState>({

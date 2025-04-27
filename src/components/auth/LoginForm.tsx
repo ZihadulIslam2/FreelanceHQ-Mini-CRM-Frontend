@@ -30,43 +30,44 @@ export const LoginForm = () => {
   }
 
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <FormInput
-          label="Email"
-          name="email"
-          type="email"
-          register={register}
-          error={errors.email}
-          placeholder="Enter your email"
-          required
-        />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="email" className="auth-label">Email</label>
+      <input
+        id="email"
+        type="email"
+        {...register('email')}
+        className="auth-input"
+        placeholder="Enter your email"
+        required
+      />
+      {errors.email && (
+        <p className="text-red-500 text-sm mb-2">{errors.email.message}</p>
+      )}
 
-        <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          register={register}
-          error={errors.password}
-          placeholder="Enter your password"
-          required
-        />
+      <label htmlFor="password" className="auth-label">Password</label>
+      <input
+        id="password"
+        type="password"
+        {...register('password')}
+        className="auth-input"
+        placeholder="Enter your password"
+        required
+      />
+      {errors.password && (
+        <p className="text-red-500 text-sm mb-2">{errors.password.message}</p>
+      )}
 
-        {error && (
-          <div className="p-3 bg-red-50 border border-red-200 rounded-md text-red-600 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400">
-            {error}
-          </div>
-        )}
+      {error && (
+        <div className="text-red-500 text-sm mb-2">{error}</div>
+      )}
 
-        <Button
-          type="submit"
-          isLoading={isSubmitting}
-          fullWidth
-          size="lg"
-        >
-          Sign In
-        </Button>
-      </form>
-    </Container>
+      <button
+        type="submit"
+        className="auth-btn"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? 'Signing In...' : 'Sign In'}
+      </button>
+    </form>
   )
 }

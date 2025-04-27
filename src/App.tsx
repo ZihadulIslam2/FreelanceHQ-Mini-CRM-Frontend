@@ -19,6 +19,7 @@ import { RemindersPage } from './components/reminders/RemindersPage'
 import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/common/Navbar'
 import './App.css'
+import './AuthLayout.css'
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated, loading } = useAuth()
@@ -70,12 +71,22 @@ const App = () => {
               path="/login"
               element={
                 <PublicRoute>
-                  <div className="min-h-screen bg-background-primary flex items-center justify-center">
-                    <div className="max-w-md w-full bg-background-secondary p-8 rounded-lg shadow-md">
-                      <h1 className="text-2xl font-bold mb-6 text-center text-text-primary">
-                        Login
-                      </h1>
-                      <LoginForm />
+                  <div className="auth-layout-bg">
+                    <div className="auth-layout-container">
+                      {/* Left Side */}
+                      <div className="auth-layout-left">
+                        <h2 className="auth-layout-title">Welcome Back!</h2>
+                        <p className="auth-layout-desc">Sign in to access your dashboard, manage clients, projects, and more.</p>
+                        <div className="auth-layout-link-row">
+                          <span>Don't have an account?</span>
+                          <Link to="/signup" className="auth-layout-link">Signup</Link>
+                        </div>
+                      </div>
+                      {/* Right Side */}
+                      <div className="auth-layout-right">
+                        <h1 className="auth-layout-title-dark">Login</h1>
+                        <LoginForm />
+                      </div>
                     </div>
                   </div>
                 </PublicRoute>
@@ -85,12 +96,22 @@ const App = () => {
               path="/signup"
               element={
                 <PublicRoute>
-                  <div className="min-h-screen bg-background-primary flex items-center justify-center">
-                    <div className="max-w-md w-full bg-background-secondary p-8 rounded-lg shadow-md">
-                      <h1 className="text-2xl font-bold mb-6 text-center text-text-primary">
-                        Sign Up
-                      </h1>
-                      <SignupForm />
+                  <div className="auth-layout-bg">
+                    <div className="auth-layout-container">
+                      {/* Left Side */}
+                      <div className="auth-layout-left">
+                        <h2 className="auth-layout-title">Come join us!</h2>
+                        <p className="auth-layout-desc">We are so excited to have you here. If you haven't already, create an account to get access to exclusive offers, rewards, and discounts.</p>
+                        <div className="auth-layout-link-row">
+                          <span>Already have an account?</span>
+                          <Link to="/login" className="auth-layout-link">Signin</Link>
+                        </div>
+                      </div>
+                      {/* Right Side */}
+                      <div className="auth-layout-right">
+                        <h1 className="auth-layout-title-dark">Signup</h1>
+                        <SignupForm />
+                      </div>
                     </div>
                   </div>
                 </PublicRoute>

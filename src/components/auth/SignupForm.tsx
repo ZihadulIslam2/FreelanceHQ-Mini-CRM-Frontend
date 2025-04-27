@@ -27,75 +27,65 @@ export const SignupForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <div>
-        <label htmlFor="name" className="block text-sm font-medium">
-          Name
-        </label>
-        <input
-          id="name"
-          type="text"
-          {...register('name')}
-          className="mt-1 block w-full rounded-md border p-2"
-        />
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-        )}
-      </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="name" className="auth-label">Name</label>
+      <input
+        id="name"
+        type="text"
+        {...register('name')}
+        className="auth-input"
+        placeholder="Enter your name"
+        required
+      />
+      {errors.name && (
+        <p className="text-red-500 text-sm mb-2">{errors.name.message}</p>
+      )}
 
-      <div>
-        <label htmlFor="email" className="block text-sm font-medium">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          {...register('email')}
-          className="mt-1 block w-full rounded-md border p-2"
-        />
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-        )}
-      </div>
+      <label htmlFor="email" className="auth-label">Email</label>
+      <input
+        id="email"
+        type="email"
+        {...register('email')}
+        className="auth-input"
+        placeholder="Enter your email"
+        required
+      />
+      {errors.email && (
+        <p className="text-red-500 text-sm mb-2">{errors.email.message}</p>
+      )}
 
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium">
-          Password
-        </label>
-        <input
-          id="password"
-          type="password"
-          {...register('password')}
-          className="mt-1 block w-full rounded-md border p-2"
-        />
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
-        )}
-      </div>
+      <label htmlFor="password" className="auth-label">Password</label>
+      <input
+        id="password"
+        type="password"
+        {...register('password')}
+        className="auth-input"
+        placeholder="Enter your password"
+        required
+      />
+      {errors.password && (
+        <p className="text-red-500 text-sm mb-2">{errors.password.message}</p>
+      )}
 
-      <div>
-        <label htmlFor="confirmPassword" className="block text-sm font-medium">
-          Confirm Password
-        </label>
-        <input
-          id="confirmPassword"
-          type="password"
-          {...register('confirmPassword')}
-          className="mt-1 block w-full rounded-md border p-2"
-        />
-        {errors.confirmPassword && (
-          <p className="text-red-500 text-sm mt-1">
-            {errors.confirmPassword.message}
-          </p>
-        )}
-      </div>
+      <label htmlFor="confirmPassword" className="auth-label">Confirm Password</label>
+      <input
+        id="confirmPassword"
+        type="password"
+        {...register('confirmPassword')}
+        className="auth-input"
+        placeholder="Confirm your password"
+        required
+      />
+      {errors.confirmPassword && (
+        <p className="text-red-500 text-sm mb-2">{errors.confirmPassword.message}</p>
+      )}
 
-      {error && <div className="text-red-500 text-sm">{error}</div>}
+      {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
 
       <button
         type="submit"
+        className="auth-btn"
         disabled={isSubmitting}
-        className="w-full bg-blue-500 text-white rounded-md py-2 px-4 hover:bg-blue-600 disabled:bg-blue-300"
       >
         {isSubmitting ? 'Creating Account...' : 'Sign Up'}
       </button>

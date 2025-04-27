@@ -5,10 +5,11 @@
 }
 
 .project-list-wrapper {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   padding: 2rem;
+  border: 1px solid var(--border-color);
 }
 
 .project-list-header {
@@ -17,19 +18,19 @@
   align-items: flex-start;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .project-list-title {
   font-size: 1.875rem;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .project-list-subtitle {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .create-project-button {
@@ -39,7 +40,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: white;
-  background-color: #2563eb;
+  background-color: var(--button-primary);
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
@@ -47,7 +48,7 @@
 }
 
 .create-project-button:hover {
-  background-color: #1d4ed8;
+  background-color: var(--button-primary-hover);
 }
 
 .create-project-button svg {
@@ -73,24 +74,24 @@
 .filter-group label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .filter-select {
   padding: 0.625rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--input-border);
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  color: #111827;
-  background-color: white;
+  color: var(--text-primary);
+  background-color: var(--input-background);
   width: 100%;
   transition: all 0.2s;
 }
 
 .filter-select:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.1);
 }
 
 .project-grid {
@@ -100,15 +101,15 @@
 }
 
 .project-card {
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
   border-radius: 0.5rem;
   overflow: hidden;
   transition: all 0.2s;
-  background-color: white;
+  background-color: var(--card-background);
 }
 
 .project-card:hover {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-shadow);
   transform: translateY(-2px);
 }
 
@@ -131,7 +132,7 @@
 .project-name {
   font-size: 1.125rem;
   font-weight: 500;
-  color: #111827;
+  color: var(--text-primary);
   text-decoration: none;
   display: block;
   margin-bottom: 0.25rem;
@@ -141,12 +142,12 @@
 }
 
 .project-name:hover {
-  color: #2563eb;
+  color: var(--accent-color);
 }
 
 .project-client {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -163,33 +164,33 @@
 }
 
 .project-status.not_started {
-  background-color: #f3f4f6;
-  color: #4b5563;
+  background-color: var(--button-secondary);
+  color: var(--text-secondary);
 }
 
 .project-status.in_progress {
-  background-color: #dbeafe;
-  color: #1d4ed8;
+  background-color: var(--info-color);
+  color: white;
 }
 
 .project-status.completed {
-  background-color: #dcfce7;
-  color: #15803d;
+  background-color: var(--success-color);
+  color: white;
 }
 
 .project-status.on_hold {
-  background-color: #fef3c7;
-  color: #b45309;
+  background-color: var(--warning-color);
+  color: white;
 }
 
 .project-status.cancelled {
-  background-color: #fee2e2;
-  color: #b91c1c;
+  background-color: var(--error-color);
+  color: white;
 }
 
 .project-details {
   font-size: 0.875rem;
-  color: #4b5563;
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -202,7 +203,7 @@
   display: flex;
   gap: 1rem;
   padding-top: 1rem;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
 }
 
 .project-action-button {
@@ -225,50 +226,51 @@
 }
 
 .view-button {
-  color: #2563eb;
-  background-color: #eff6ff;
+  color: var(--accent-color);
+  background-color: var(--button-secondary);
 }
 
 .view-button:hover {
-  background-color: #dbeafe;
-  color: #1d4ed8;
+  background-color: var(--accent-color);
+  color: white;
 }
 
 .edit-button {
-  color: #059669;
-  background-color: #ecfdf5;
+  color: var(--success-color);
+  background-color: var(--button-secondary);
 }
 
 .edit-button:hover {
-  background-color: #d1fae5;
-  color: #047857;
+  background-color: var(--success-color);
+  color: white;
 }
 
 .empty-state {
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 0.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
   padding: 3rem 2rem;
   text-align: center;
+  border: 1px solid var(--border-color);
 }
 
 .empty-state-icon {
   height: 3rem;
   width: 3rem;
-  color: #9ca3af;
+  color: var(--text-secondary);
   margin: 0 auto;
 }
 
 .empty-state-title {
   font-size: 1.125rem;
   font-weight: 500;
-  color: #111827;
+  color: var(--text-primary);
   margin-top: 1rem;
 }
 
 .empty-state-description {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
   margin-top: 0.5rem;
   max-width: 24rem;
   margin-left: auto;
@@ -285,8 +287,8 @@
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #2563eb;
+  border: 4px solid var(--button-secondary);
+  border-top: 4px solid var(--accent-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -305,8 +307,8 @@
 
 .error-content {
   padding: 1rem 1.5rem;
-  background-color: #fee2e2;
-  color: #b91c1c;
+  background-color: var(--error-color);
+  color: white;
   border-radius: 0.375rem;
   font-size: 0.875rem;
   font-weight: 500;

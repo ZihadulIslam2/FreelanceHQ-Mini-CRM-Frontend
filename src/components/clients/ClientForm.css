@@ -1,6 +1,6 @@
 .client-form-container {
   min-height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--background-secondary);
   padding: 2rem 0;
   display: flex;
   align-items: center;
@@ -12,9 +12,10 @@
   max-width: 32rem;
   margin: 0 auto;
   padding: 2rem;
-  background-color: white;
+  background-color: var(--card-background);
   border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border-color);
 }
 
 .client-form-header {
@@ -25,13 +26,13 @@
 .client-form-title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .client-form-subtitle {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--text-secondary);
 }
 
 .client-form {
@@ -49,40 +50,40 @@
 .form-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
 .required-mark {
-  color: #dc2626;
+  color: var(--error-color);
 }
 
 .form-input {
   padding: 0.75rem 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--input-border);
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  color: #111827;
+  color: var(--text-primary);
   transition: all 0.2s;
-  background-color: #f9fafb;
+  background-color: var(--input-background);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-  background-color: white;
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  background-color: var(--card-background);
 }
 
 .form-input::placeholder {
-  color: #9ca3af;
+  color: var(--text-secondary);
 }
 
 .form-error {
   font-size: 0.75rem;
-  color: #dc2626;
+  color: var(--error-color);
   margin-top: 0.25rem;
 }
 
@@ -97,17 +98,17 @@
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
-  background-color: white;
-  border: 1px solid #d1d5db;
+  color: var(--text-primary);
+  background-color: var(--button-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 0.375rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .cancel-button:hover {
-  background-color: #f9fafb;
-  border-color: #9ca3af;
+  background-color: var(--button-secondary-hover);
+  border-color: var(--text-secondary);
 }
 
 .submit-button {
@@ -115,7 +116,7 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: white;
-  background-color: #2563eb;
+  background-color: var(--button-primary);
   border: none;
   border-radius: 0.375rem;
   cursor: pointer;
@@ -126,7 +127,7 @@
 }
 
 .submit-button:hover {
-  background-color: #1d4ed8;
+  background-color: var(--button-primary-hover);
 }
 
 .submit-button:disabled {
@@ -140,9 +141,8 @@
 }
 
 .error-message {
-  background-color: #fef2f2;
-  border: 1px solid #fee2e2;
-  color: #dc2626;
+  background-color: var(--error-color);
+  color: white;
   padding: 0.75rem 1rem;
   border-radius: 0.375rem;
   margin-bottom: 1.5rem;
@@ -159,8 +159,8 @@
 .spinner {
   width: 2rem;
   height: 2rem;
-  border: 2px solid transparent;
-  border-top-color: #2563eb;
+  border: 2px solid var(--button-secondary);
+  border-top: 2px solid var(--accent-color);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }

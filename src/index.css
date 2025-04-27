@@ -4,30 +4,50 @@
 
 :root {
   --background-primary: #ffffff;
-  --background-secondary: #f3f4f6;
-  --text-primary: #1f2937;
-  --text-secondary: #4b5563;
-  --border-color: #e5e7eb;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
+  --background-secondary: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --border-color: #e2e8f0;
+  --accent-color: #4f46e5;
+  --accent-hover: #4338ca;
   --error-color: #ef4444;
   --success-color: #10b981;
   --warning-color: #f59e0b;
   --info-color: #3b82f6;
+  --card-background: #ffffff;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --input-background: #f8fafc;
+  --input-border: #e2e8f0;
+  --input-focus: #4f46e5;
+  --button-primary: #4f46e5;
+  --button-primary-hover: #4338ca;
+  --button-secondary: #f1f5f9;
+  --button-secondary-hover: #e2e8f0;
+  --button-text: #0f172a;
 }
 
 .dark {
-  --background-primary: #111827;
-  --background-secondary: #1f2937;
-  --text-primary: #f9fafb;
-  --text-secondary: #d1d5db;
-  --border-color: #374151;
-  --accent-color: #60a5fa;
-  --accent-hover: #3b82f6;
+  --background-primary: #0f172a;
+  --background-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border-color: #334155;
+  --accent-color: #818cf8;
+  --accent-hover: #6366f1;
   --error-color: #f87171;
   --success-color: #34d399;
   --warning-color: #fbbf24;
   --info-color: #60a5fa;
+  --card-background: #1e293b;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --input-background: #1e293b;
+  --input-border: #334155;
+  --input-focus: #818cf8;
+  --button-primary: #818cf8;
+  --button-primary-hover: #6366f1;
+  --button-secondary: #334155;
+  --button-secondary-hover: #475569;
+  --button-text: #f8fafc;
 }
 
 body {

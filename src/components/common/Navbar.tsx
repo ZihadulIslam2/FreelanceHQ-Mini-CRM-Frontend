@@ -8,6 +8,7 @@ import './Navbar.css';
 export default function Navbar() {
   const { isAuthenticated, logout } = useAuth();
   const [loading, setLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const initializeNavbar = async () => {
@@ -21,13 +22,28 @@ export default function Navbar() {
     initializeNavbar();
   }, [isAuthenticated]);
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
   return (
     <nav className="navbar">
       <div className="navbar__left">
         <img src={flexiLogo} alt="Logo" className="navbar__logo" />
         <span className="navbar__brand">FlexiCRM</span>
       </div>
-      <div className="navbar__right">
+
+      {/* Mobile Menu Button */}
+      <button 
+        className="navbar__mobile-menu-btn"
+        onClick={toggleMobileMenu}
+        aria-label="Toggle mobile menu"
+      >
+        <span className={`navbar__hamburger ${isMobileMenuOpen ? 'open' : ''}`}></span>
+      </button>
+
+      {/* Desktop Menu */}
+      <div className={`navbar__right ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
         <ThemeToggle />
         {!loading && !isAuthenticated && (
           <>

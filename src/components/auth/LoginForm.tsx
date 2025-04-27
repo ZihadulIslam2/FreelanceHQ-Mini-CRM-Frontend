@@ -27,44 +27,57 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="email" className="auth-label">Email</label>
-      <input
-        id="email"
-        type="email"
-        {...register('email')}
-        className="auth-input"
-        placeholder="Enter your email"
-        required
-      />
-      {errors.email && (
-        <p className="text-red-500 text-sm mb-2">{errors.email.message}</p>
-      )}
+    <div className="public-route-bg flex items-center justify-center min-h-screen p-4">
+      <div className="auth-container w-full">
+        <h1 className="auth-title">Welcome Back</h1>
+        <p className="auth-subtitle">Sign in to your account to continue</p>
+        
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="space-y-4">
+            <div>
+              <label htmlFor="email" className="auth-label">Email</label>
+              <input
+                id="email"
+                type="email"
+                {...register('email')}
+                className="auth-input"
+                placeholder="Enter your email"
+                required
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+              )}
+            </div>
 
-      <label htmlFor="password" className="auth-label">Password</label>
-      <input
-        id="password"
-        type="password"
-        {...register('password')}
-        className="auth-input"
-        placeholder="Enter your password"
-        required
-      />
-      {errors.password && (
-        <p className="text-red-500 text-sm mb-2">{errors.password.message}</p>
-      )}
+            <div>
+              <label htmlFor="password" className="auth-label">Password</label>
+              <input
+                id="password"
+                type="password"
+                {...register('password')}
+                className="auth-input"
+                placeholder="Enter your password"
+                required
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+              )}
+            </div>
 
-      {error && (
-        <div className="text-red-500 text-sm mb-2">{error}</div>
-      )}
+            {error && (
+              <div className="auth-error">{error}</div>
+            )}
 
-      <button
-        type="submit"
-        className="auth-btn"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? 'Signing In...' : 'Sign In'}
-      </button>
-    </form>
+            <button
+              type="submit"
+              className="auth-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Signing In...' : 'Sign In'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   )
 }

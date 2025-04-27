@@ -14,6 +14,8 @@ import { ClientList } from './components/clients/ClientList'
 import { ClientForm } from './components/clients/ClientForm'
 import { ClientDetails } from './components/clients/ClientDetails'
 import { ProjectForm } from './components/projects/ProjectForm'
+import { ProjectView } from './components/projects/ProjectView'
+import { ProjectList } from './components/projects/ProjectList'
 import { ThemeToggle } from './components/common/ThemeToggle'
 import { RemindersPage } from './components/reminders/RemindersPage'
 import Dashboard from './components/dashboard/Dashboard'
@@ -51,7 +53,9 @@ const DashboardLayout = () => {
           <Route path="/clients/new" element={<ClientForm />} />
           <Route path="/clients/:id" element={<ClientDetails />} />
           <Route path="/clients/:id/edit" element={<ClientForm />} />
+          <Route path="/projects" element={<ProjectList />} />
           <Route path="/clients/:clientId/projects/new" element={<ProjectForm />} />
+          <Route path="/clients/:clientId/projects/:projectId" element={<ProjectView />} />
           <Route path="/clients/:clientId/projects/:projectId/edit" element={<ProjectForm />} />
           <Route path="/reminders" element={<RemindersPage />} />
         </Routes>

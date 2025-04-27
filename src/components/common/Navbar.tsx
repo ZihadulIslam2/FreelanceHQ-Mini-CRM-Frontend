@@ -49,25 +49,7 @@ const Navbar = () => {
           <>
             <Link to="/dashboard" className="navbar__link">Dashboard</Link>
             <Link to="/clients" className="navbar__link">Clients</Link>
-            <div className="navbar__dropdown" onMouseEnter={() => setProjectDropdown(true)} onMouseLeave={() => setProjectDropdown(false)}>
-              <span className="navbar__link navbar__dropdown-toggle">Projects ▾</span>
-              {projectDropdown && (
-                <div className="navbar__dropdown-menu">
-                  {projects.length === 0 && <div className="navbar__dropdown-item">No Projects</div>}
-                  {projects.map(project => (
-                    <div key={project.id} className="navbar__dropdown-item" onClick={() => navigate(`/clients/${project.clientId}/projects/${project.id}/edit`)}>
-                      {project.name}
-                    </div>
-                  ))}
-                  <div className="navbar__dropdown-divider" />
-                  {clients.map(client => (
-                    <div key={client.id} className="navbar__dropdown-item" onClick={() => navigate(`/clients/${client.id}/projects/new`)}>
-                      + Add Project for {client.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link to="/projects" className="navbar__link">Projects</Link>
             <Link to="/reminders" className="navbar__link">Reminders</Link>
             <button className="navbar__btn navbar__btn--outline" onClick={logout}>Logout</button>
           </>

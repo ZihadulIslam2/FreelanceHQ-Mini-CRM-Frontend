@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import { Client } from '../../types/client'
 import { Project } from '../../types/project'
 import * as clientService from '../../services/clientService'
@@ -119,7 +119,14 @@ export const ClientDetails = () => {
                 className="border rounded-lg p-4 hover:shadow-md transition-shadow"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-semibold">{project.name}</h3>
+                  <h3 className="text-lg font-semibold">
+                    <Link
+                      to={`/clients/${id}/projects/${project.id}`}
+                      className="hover:text-blue-600"
+                    >
+                      {project.name}
+                    </Link>
+                  </h3>
                   <span className={`px-2 py-1 text-xs rounded-full ${
                     project.status === 'completed' ? 'bg-green-100 text-green-800' :
                     project.status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
@@ -132,12 +139,18 @@ export const ClientDetails = () => {
                 </div>
                 <p className="text-gray-600 mb-4">{project.details}</p>
                 <div className="flex justify-end space-x-2">
-                  <button
-                    onClick={() => navigate(`/clients/${id}/projects/${project.id}/edit`)}
+                  <Link
+                    to={`/clients/${id}/projects/${project.id}`}
+                    className="text-blue-600 hover:text-blue-800 text-sm"
+                  >
+                    View
+                  </Link>
+                  <Link
+                    to={`/clients/${id}/projects/${project.id}/edit`}
                     className="text-blue-600 hover:text-blue-800 text-sm"
                   >
                     Edit
-                  </button>
+                  </Link>
                   <button
                     onClick={() => handleDeleteProject(project.id)}
                     className="text-red-600 hover:text-red-800 text-sm"

@@ -51,6 +51,7 @@ const Navbar = () => {
             <Link to="/clients" className="navbar__link">Clients</Link>
             <Link to="/projects" className="navbar__link">Projects</Link>
             <Link to="/reminders" className="navbar__link">Reminders</Link>
+            <Link to="/about" className="navbar__link">About</Link>
             <button className="navbar__btn navbar__btn--outline" onClick={logout}>Logout</button>
           </>
         )}

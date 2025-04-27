@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { CreateClientDto } from '../../types/client'
 import * as clientService from '../../services/clientService'
+import './ClientForm.css'
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -63,76 +64,103 @@ export const ClientForm = () => {
     }
   }
 
-  if (loading && id) return <div className="text-center">Loading...</div>
+  if (loading && id) return (
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+    </div>
+  )
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-6">
-        {id ? 'Edit Client' : 'Create New Client'}
-      </h1>
-
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Name
-          </label>
-          <input
-            type="text"
-            {...register('name')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-          )}
+    <div className="client-form-container">
+      <div className="client-form-wrapper">
+        <div className="client-form-header">
+          <h1 className="client-form-title">
+            {id ? 'Edit Client' : 'Create New Client'}
+          </h1>
+          <p className="client-form-subtitle">
+            {id ? 'Update client information' : 'Add a new client to your CRM'}
+          </p>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Email
-          </label>
-          <input
-            type="email"
-            {...register('email')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.email && (
-            <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
-          )}
-        </div>
+        {error && <div className="error-message">{error}</div>}
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Phone
-          </label>
-          <input
-            type="tel"
-            {...register('phone')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.phone && (
-            <p className="mt-1 text-sm text-red-500">{errors.phone.message}</p>
-          )}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="client-form">
+          <div className="form-group">
+            <label className="form-label">
+              Name
+              <span className="required-mark">*</span>
+            </label>
+            <input
+              type="text"
+              {...register('name')}
+              className="form-input"
+              placeholder="Enter client name"
+            />
+            {errors.name && (
+              <p className="form-error">{errors.name.message}</p>
+            )}
+          </div>
 
-        <div className="flex justify-end space-x-3">
-          <button
-            type="button"
-            onClick={() => navigate('/clients')}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 disabled:opacity-50"
-          >
-            {loading ? 'Saving...' : id ? 'Update' : 'Create'}
-          </button>
-        </div>
-      </form>
+          <div className="form-group">
+            <label className="form-label">
+              Email
+              <span className="required-mark">*</span>
+            </label>
+            <input
+              type="email"
+              {...register('email')}
+              className="form-input"
+              placeholder="Enter client email"
+            />
+            {errors.email && (
+              <p className="form-error">{errors.email.message}</p>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">
+              Phone
+              <span className="required-mark">*</span>
+            </label>
+            <input
+              type="tel"
+              {...register('phone')}
+              className="form-input"
+              placeholder="Enter client phone number"
+            />
+            {errors.phone && (
+              <p className="form-error">{errors.phone.message}</p>
+            )}
+          </div>
+
+          <div className="form-actions">
+            <button
+              type="button"
+              onClick={() => navigate('/clients')}
+              className="cancel-button"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="submit-button"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Saving...
+                </>
+              ) : (
+                id ? 'Update Client' : 'Create Client'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

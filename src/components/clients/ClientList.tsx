@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Client } from '../../types/client'
 import * as clientService from '../../services/clientService'
+import './ClientList.css'
 
 export const ClientList = () => {
   const [clients, setClients] = useState<Client[]>([])
@@ -38,83 +39,121 @@ export const ClientList = () => {
     }
   }
 
-  if (loading) return <div className="text-center">Loading...</div>
-  if (error) return <div className="text-red-500 text-center">{error}</div>
+  if (loading) return (
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+    </div>
+  )
+  
+  if (error) return (
+    <div className="error-message">
+      <div className="error-content">
+        {error}
+      </div>
+    </div>
+  )
 
   return (
-    <div className="container mx-auto px-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Clients</h1>
-        <button
-          onClick={() => navigate('/clients/new')}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-        >
-          Add Client
-        </button>
-      </div>
+    <div className="client-list-container">
+      <div className="client-list-wrapper">
+        <div className="client-list-header">
+          <div>
+            <h1 className="client-list-title">Clients</h1>
+            <p className="client-list-subtitle">Manage your client relationships and projects</p>
+          </div>
+          <button
+            onClick={() => navigate('/clients/new')}
+            className="add-client-button"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+            </svg>
+            Add Client
+          </button>
+        </div>
 
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Name
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Email
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Phone
-              </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+        {clients.length === 0 ? (
+          <div className="empty-state">
+            <svg className="empty-state-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <h3 className="empty-state-title">No clients</h3>
+            <p className="empty-state-description">Get started by creating a new client.</p>
+            <div className="empty-state-button">
+              <button
+                onClick={() => navigate('/clients/new')}
+                className="add-client-button"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                </svg>
+                Add Client
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="client-grid">
             {clients.map((client) => (
-              <tr key={client.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <Link
-                    to={`/clients/${client.id}`}
-                    className="text-blue-600 hover:text-blue-800 font-medium"
-                  >
-                    {client.name}
-                  </Link>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{client.email}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{client.phone}</td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Link
-                    to={`/clients/${client.id}/projects/new`}
-                    className="text-green-600 hover:text-green-800 mr-4"
-                  >
-                    Add Project
-                  </Link>
-                  <button
-                    onClick={() => navigate(`/clients/${client.id}/edit`)}
-                    className="text-blue-600 hover:text-blue-800 mr-4"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(client.id)}
-                    className="text-red-600 hover:text-red-800"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              <div key={client.id} className="client-card">
+                <div className="client-card-content">
+                  <div className="client-card-header">
+                    <div className="client-avatar">
+                      <span className="client-avatar-initial">
+                        {client.name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <div className="client-info">
+                      <Link
+                        to={`/clients/${client.id}`}
+                        className="client-name"
+                      >
+                        {client.name}
+                      </Link>
+                      <p className="client-email">{client.email}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="client-phone">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    {client.phone}
+                  </div>
+
+                  <div className="client-actions">
+                    <Link
+                      to={`/clients/${client.id}/projects/new`}
+                      className="client-action-button add-project-button"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+                      </svg>
+                      Add Project
+                    </Link>
+                    <button
+                      onClick={() => navigate(`/clients/${client.id}/edit`)}
+                      className="client-action-button edit-button"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                      </svg>
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDelete(client.id)}
+                      className="client-action-button delete-button"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
-            {clients.length === 0 && (
-              <tr>
-                <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
-                  No clients found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+          </div>
+        )}
       </div>
     </div>
   )

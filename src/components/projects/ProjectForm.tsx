@@ -5,6 +5,7 @@ import * as yup from 'yup'
 import { useNavigate, useParams } from 'react-router-dom'
 import * as projectService from '../../services/projectService'
 import { CreateProjectDto, UpdateProjectDto } from '../../types/project'
+import './ProjectForm.css'
 
 const schema = yup.object().shape({
   name: yup.string().required('Project name is required'),
@@ -82,85 +83,109 @@ export const ProjectForm = () => {
     }
   }
 
-  if (loading && projectId) return <div className="text-center">Loading...</div>
+  if (loading && projectId) return (
+    <div className="loading-spinner">
+      <div className="spinner"></div>
+    </div>
+  )
 
   return (
-    <div className="max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-6">
-        {projectId ? 'Edit Project' : 'Create New Project'}
-      </h1>
-
-      {error && <div className="text-red-500 mb-4">{error}</div>}
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Project Name
-          </label>
-          <input
-            type="text"
-            {...register('name')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          />
-          {errors.name && (
-            <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-          )}
+    <div className="project-form-container">
+      <div className="project-form-wrapper">
+        <div className="project-form-header">
+          <h1 className="project-form-title">
+            {projectId ? 'Edit Project' : 'Create New Project'}
+          </h1>
+          <p className="project-form-subtitle">
+            {projectId ? 'Update project information' : 'Add a new project to your client'}
+          </p>
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Details
-          </label>
-          <textarea
-            {...register('details')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-            rows={4}
-          />
-          {errors.details && (
-            <p className="mt-1 text-sm text-red-500">
-              {errors.details.message}
-            </p>
-          )}
-        </div>
+        {error && <div className="error-message">{error}</div>}
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Status
-          </label>
-          <select
-            {...register('status')}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-          >
-            <option value="not_started">Not Started</option>
-            <option value="in_progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="on_hold">On Hold</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
-          {errors.status && (
-            <p className="mt-1 text-sm text-red-500">{errors.status.message}</p>
-          )}
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="project-form">
+          <div className="form-group">
+            <label className="form-label">
+              Project Name
+              <span className="required-mark">*</span>
+            </label>
+            <input
+              type="text"
+              {...register('name')}
+              className="form-input"
+              placeholder="Enter project name"
+            />
+            {errors.name && (
+              <p className="form-error">{errors.name.message}</p>
+            )}
+          </div>
 
-        <div className="flex justify-end space-x-3">
-          <button
-            type="button"
-            onClick={() =>
-              navigate(clientId ? `/clients/${clientId}` : '/clients')
-            }
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 disabled:opacity-50"
-          >
-            {loading ? 'Saving...' : projectId ? 'Update' : 'Create'}
-          </button>
-        </div>
-      </form>
+          <div className="form-group">
+            <label className="form-label">
+              Details
+              <span className="required-mark">*</span>
+            </label>
+            <textarea
+              {...register('details')}
+              className="form-input form-textarea"
+              placeholder="Enter project details"
+            />
+            {errors.details && (
+              <p className="form-error">{errors.details.message}</p>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label className="form-label">
+              Status
+              <span className="required-mark">*</span>
+            </label>
+            <select
+              {...register('status')}
+              className="form-input form-select"
+            >
+              <option value="">Select status</option>
+              <option value="not_started">Not Started</option>
+              <option value="in_progress">In Progress</option>
+              <option value="completed">Completed</option>
+              <option value="on_hold">On Hold</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+            {errors.status && (
+              <p className="form-error">{errors.status.message}</p>
+            )}
+          </div>
+
+          <div className="form-actions">
+            <button
+              type="button"
+              onClick={() =>
+                navigate(clientId ? `/clients/${clientId}` : '/clients')
+              }
+              className="cancel-button"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="submit-button"
+            >
+              {loading ? (
+                <>
+                  <svg className="animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Saving...
+                </>
+              ) : (
+                projectId ? 'Update Project' : 'Create Project'
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }

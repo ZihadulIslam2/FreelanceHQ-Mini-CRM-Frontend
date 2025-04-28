@@ -1,18 +1,19 @@
 import axios from 'axios';
 import { InteractionLog, CreateInteractionLogDto, UpdateInteractionLogDto } from '../types/interactionLog';
 
-const API_BASE_URL = 'http://localhost:5000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const getAuthHeaders = () => ({
   Authorization: `Bearer ${localStorage.getItem('token')}`,
   'Content-Type': 'application/json',
 });
 
-export const getAllInteractionLogs = async (clientId: number): Promise<InteractionLog[]> => {
-  const response = await axios.get(
-    `${API_BASE_URL}/interaction-logs?clientId=${clientId}`,
-    { headers: getAuthHeaders() }
-  );
+export const getAllInteractionLogs = async (clientId?: number): Promise<InteractionLog[]> => {
+  const url = clientId 
+    ? `${API_BASE_URL}/interaction-logs?clientId=${clientId}`
+    : `${API_BASE_URL}/interaction-logs`;
+    
+  const response = await axios.get(url, { headers: getAuthHeaders() });
   return response.data;
 };
 

@@ -57,6 +57,7 @@ export default function Navbar() {
               <Link to="/dashboard" className="navbar__link">Dashboard</Link>
               <Link to="/clients" className="navbar__link">Clients</Link>
               <Link to="/projects" className="navbar__link">Projects</Link>
+              <Link to="/interaction-logs" className="navbar__link">Interaction Logs</Link>
               <Link to="/reminders" className="navbar__link">Reminders</Link>
               <Link to="/about" className="navbar__link">About</Link>
               <button className="navbar__btn navbar__btn--outline" onClick={logout}>Logout</button>

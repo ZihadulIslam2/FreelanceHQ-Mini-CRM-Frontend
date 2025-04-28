@@ -11,8 +11,8 @@ export interface CreateClientDto {
   phone: string
 }
 
-// Removed UpdateClientDto as it was redundant
 export interface UpdateClientDto {
   name?: string
   email?: string
+  phone?: string
 }

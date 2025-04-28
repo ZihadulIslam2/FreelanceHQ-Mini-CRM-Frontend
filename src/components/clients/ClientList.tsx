@@ -7,7 +7,7 @@ import './ClientList.css'
 export const ClientList = () => {
   const [clients, setClients] = useState<Client[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
+  const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -16,11 +16,12 @@ export const ClientList = () => {
 
   const loadClients = async () => {
     try {
+      setLoading(true)
+      setError(null)
       const data = await clientService.getAllClients()
       setClients(data)
-      setError('')
     } catch (error) {
-      setError('Failed to load clients')
+      setError('Failed to load clients. Please try again later.')
       console.error('Error loading clients:', error)
     } finally {
       setLoading(false)
@@ -30,28 +31,37 @@ export const ClientList = () => {
   const handleDelete = async (id: number) => {
     if (window.confirm('Are you sure you want to delete this client?')) {
       try {
+        setError(null)
         await clientService.deleteClient(id)
         setClients(clients.filter((client) => client.id !== id))
       } catch (error) {
-        setError('Failed to delete client')
+        setError('Failed to delete client. Please try again later.')
         console.error('Error deleting client:', error)
       }
     }
   }
 
-  if (loading) return (
-    <div className="loading-spinner">
-      <div className="spinner"></div>
-    </div>
-  )
-  
-  if (error) return (
-    <div className="error-message">
-      <div className="error-content">
-        {error}
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <div className="loading-spinner"></div>
+        <p>Loading clients...</p>
       </div>
-    </div>
-  )
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="error-container">
+        <div className="error-message">
+          <p>{error}</p>
+          <button onClick={loadClients} className="retry-button">
+            Retry
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="client-list-container">

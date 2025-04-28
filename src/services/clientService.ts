@@ -1,43 +1,51 @@
-import axios from 'axios'
+import { api } from './api'
 import { Client, CreateClientDto, UpdateClientDto } from '../types/client'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
-
-const clientApi = axios.create({
-  baseURL: `${API_URL}/clients`,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-})
-
-clientApi.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
+export const getAllClients = async (): Promise<Client[]> => {
+  try {
+    const response = await api.get<Client[]>('/clients')
+    return response.data
+  } catch (error) {
+    console.error('Error fetching clients:', error)
+    throw new Error('Failed to fetch clients')
   }
-  return config
-})
-
-export const getAllClients = async () => {
-  const response = await clientApi.get<Client[]>('')
-  return response.data
 }
 
-export const getClientById = async (id: number) => {
-  const response = await clientApi.get<Client>(`/${id}`)
-  return response.data
+export const getClientById = async (id: number): Promise<Client> => {
+  try {
+    const response = await api.get<Client>(`/clients/${id}`)
+    return response.data
+  } catch (error) {
+    console.error(`Error fetching client ${id}:`, error)
+    throw new Error('Failed to fetch client')
+  }
 }
 
-export const createClient = async (data: CreateClientDto) => {
-  const response = await clientApi.post<Client>('', data)
-  return response.data
+export const createClient = async (data: CreateClientDto): Promise<Client> => {
+  try {
+    const response = await api.post<Client>('/clients', data)
+    return response.data
+  } catch (error) {
+    console.error('Error creating client:', error)
+    throw new Error('Failed to create client')
+  }
 }
 
-export const updateClient = async (id: number, data: UpdateClientDto) => {
-  const response = await clientApi.put<Client>(`/${id}`, data)
-  return response.data
+export const updateClient = async (id: number, data: UpdateClientDto): Promise<Client> => {
+  try {
+    const response = await api.put<Client>(`/clients/${id}`, data)
+    return response.data
+  } catch (error) {
+    console.error(`Error updating client ${id}:`, error)
+    throw new Error('Failed to update client')
+  }
 }
 
-export const deleteClient = async (id: number) => {
-  await clientApi.delete(`/${id}`)
+export const deleteClient = async (id: number): Promise<void> => {
+  try {
+    await api.delete(`/clients/${id}`)
+  } catch (error) {
+    console.error(`Error deleting client ${id}:`, error)
+    throw new Error('Failed to delete client')
+  }
 }

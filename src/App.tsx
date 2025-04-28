@@ -21,6 +21,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/common/Navbar'
 import Footer from './components/Footer'
 import About from './pages/About'
+import { InteractionLogsPage } from './components/interaction-logs/InteractionLogsPage'
 import './App.css'
 import './AuthLayout.css'
 
@@ -62,6 +63,7 @@ const DashboardLayout = () => {
           <Route path="/clients/:clientId/projects/new" element={<ProjectForm />} />
           <Route path="/clients/:clientId/projects/:projectId" element={<ProjectView />} />
           <Route path="/clients/:clientId/projects/:projectId/edit" element={<ProjectForm />} />
+          <Route path="/interaction-logs" element={<InteractionLogsPage />} />
           <Route path="/reminders" element={<RemindersPage />} />
           <Route path="/about" element={<About />} />
         </Routes>

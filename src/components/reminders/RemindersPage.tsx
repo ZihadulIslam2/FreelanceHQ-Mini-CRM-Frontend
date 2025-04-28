@@ -49,13 +49,17 @@ export const RemindersPage: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px' }}>
-      <Row gutter={[24, 24]}>
+    <div className="p-4 sm:p-6 lg:p-8">
+      <Row gutter={[16, 16]}>
         <Col xs={24} lg={16}>
-          <ReminderList onEdit={handleEdit} onRefresh={() => {}} />
+          <div className="mb-4">
+            <ReminderList onEdit={handleEdit} onRefresh={() => {}} />
+          </div>
         </Col>
         <Col xs={24} lg={8}>
-          <WeeklyReminders />
+          <div className="mb-4">
+            <WeeklyReminders />
+          </div>
         </Col>
       </Row>
 
@@ -63,7 +67,8 @@ export const RemindersPage: React.FC = () => {
         type="primary"
         icon={<PlusOutlined />}
         onClick={() => setIsModalVisible(true)}
-        style={{ position: 'fixed', bottom: '24px', right: '24px' }}
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8 z-10 shadow-lg"
+        size="large"
       >
         New Reminder
       </Button>
@@ -73,7 +78,10 @@ export const RemindersPage: React.FC = () => {
         open={isModalVisible}
         onCancel={handleModalCancel}
         footer={null}
-        width={600}
+        width="90%"
+        style={{ maxWidth: '600px', color: 'inherit' }}
+        className="reminder-modal dark:bg-gray-800"
+        bodyStyle={{ padding: '24px' }}
       >
         <ReminderForm
           initialValues={selectedReminder}

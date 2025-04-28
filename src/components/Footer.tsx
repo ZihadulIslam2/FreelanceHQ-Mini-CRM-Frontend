@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="footer__grid">
           {/* Company Info */}
           <div className="footer__section">
-            <h3 className="footer__brand">FreelanceHQ CRM</h3>
+            <h3 className="footer__brand">FlexiCRM</h3>
             <p className="footer__description">
               Streamline your freelance business with our powerful CRM solution. Manage clients, projects, and finances all in one place.
             </p>
@@ -68,10 +68,10 @@ const Footer: React.FC = () => {
           <div className="footer__section">
             <h3 className="footer__title">Contact Us</h3>
             <ul className="footer__contact">
-              <li>Email: support@freelancehq.com</li>
-              <li>Phone: +1 (555) 123-4567</li>
-              <li>Address: 123 Business St, Suite 100</li>
-              <li>Hours: Mon-Fri, 9AM-6PM EST</li>
+              <li>Email: zihadul708@gmail.com</li>
+              <li>Phone: +8801882343242</li>
+              <li>Address: Dhaka, Bangladesh</li>
+              <li>Hours: 24/7</li>
             </ul>
           </div>
 
@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
 
         <div className="footer__divider">
           <p className="footer__copyright">
-            © {new Date().getFullYear()} FreelanceHQ CRM. All rights reserved.
+            © {new Date().getFullYear()} FlexiCRM. All rights reserved.
           </p>
         </div>
       </div>

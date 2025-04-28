@@ -28,39 +28,41 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="navbar__left">
-        <img src={flexiLogo} alt="Logo" className="navbar__logo" />
-        <span className="navbar__brand">FlexiCRM</span>
-      </div>
+      <div className="navbar__container">
+        <div className="navbar__left">
+          <img src={flexiLogo} alt="Logo" className="navbar__logo" />
+          <span className="navbar__brand">FlexiCRM</span>
+        </div>
 
-      {/* Mobile Menu Button */}
-      <button 
-        className="navbar__mobile-menu-btn"
-        onClick={toggleMobileMenu}
-        aria-label="Toggle mobile menu"
-      >
-        <span className={`navbar__hamburger ${isMobileMenuOpen ? 'open' : ''}`}></span>
-      </button>
+        {/* Mobile Menu Button */}
+        <button 
+          className="navbar__mobile-menu-btn"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          <span className={`navbar__hamburger ${isMobileMenuOpen ? 'open' : ''}`}></span>
+        </button>
 
-      {/* Desktop Menu */}
-      <div className={`navbar__right ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
-        <ThemeToggle />
-        {!loading && !isAuthenticated && (
-          <>
-            <Link to="/signup" className="navbar__link">Signup</Link>
-            <Link to="/login" className="navbar__link">Login</Link>
-          </>
-        )}
-        {!loading && isAuthenticated && (
-          <>
-            <Link to="/dashboard" className="navbar__link">Dashboard</Link>
-            <Link to="/clients" className="navbar__link">Clients</Link>
-            <Link to="/projects" className="navbar__link">Projects</Link>
-            <Link to="/reminders" className="navbar__link">Reminders</Link>
-            <Link to="/about" className="navbar__link">About</Link>
-            <button className="navbar__btn navbar__btn--outline" onClick={logout}>Logout</button>
-          </>
-        )}
+        {/* Desktop Menu */}
+        <div className={`navbar__right ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
+          <ThemeToggle />
+          {!loading && !isAuthenticated && (
+            <>
+              <Link to="/signup" className="navbar__link">Signup</Link>
+              <Link to="/login" className="navbar__link">Login</Link>
+            </>
+          )}
+          {!loading && isAuthenticated && (
+            <>
+              <Link to="/dashboard" className="navbar__link">Dashboard</Link>
+              <Link to="/clients" className="navbar__link">Clients</Link>
+              <Link to="/projects" className="navbar__link">Projects</Link>
+              <Link to="/reminders" className="navbar__link">Reminders</Link>
+              <Link to="/about" className="navbar__link">About</Link>
+              <button className="navbar__btn navbar__btn--outline" onClick={logout}>Logout</button>
+            </>
+          )}
+        </div>
       </div>
     </nav>
   );

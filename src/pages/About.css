@@ -1,11 +1,21 @@
 .about {
   min-height: 100vh;
   background-color: #f9fafb;
+  transition: background-color 0.3s ease;
+}
+
+.about--dark {
+  background-color: #1a1a1a;
 }
 
 .about__hero {
   background-color: white;
   padding: 4rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.about__hero--dark {
+  background-color: #2d2d2d;
 }
 
 .about__container {
@@ -23,6 +33,11 @@
   font-weight: 800;
   color: #111827;
   margin-bottom: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.about__title--dark {
+  color: #ffffff;
 }
 
 .about__subtitle {
@@ -30,11 +45,21 @@
   color: #6b7280;
   max-width: 36rem;
   margin: 0 auto;
+  transition: color 0.3s ease;
+}
+
+.about__subtitle--dark {
+  color: #a0aec0;
 }
 
 .about__features {
   padding: 3rem 0;
   background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.about__features--dark {
+  background-color: #2d2d2d;
 }
 
 .about__section-title {
@@ -45,6 +70,11 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.about__section-title--dark {
+  color: #818cf8;
 }
 
 .about__section-subtitle {
@@ -53,6 +83,11 @@
   color: #111827;
   text-align: center;
   margin-bottom: 3rem;
+  transition: color 0.3s ease;
+}
+
+.about__section-subtitle--dark {
+  color: #ffffff;
 }
 
 .about__features-grid {
@@ -70,6 +105,11 @@
 .about__feature {
   position: relative;
   padding-left: 4rem;
+  transition: background-color 0.3s ease;
+}
+
+.about__feature--dark {
+  background-color: #2d2d2d;
 }
 
 .about__feature-icon {
@@ -84,6 +124,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.about__feature--dark .about__feature-icon {
+  background-color: #818cf8;
 }
 
 .about__feature-title {
@@ -91,16 +136,31 @@
   font-weight: 500;
   color: #111827;
   margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.about__feature-title--dark {
+  color: #ffffff;
 }
 
 .about__feature-description {
   color: #6b7280;
   line-height: 1.5;
+  transition: color 0.3s ease;
+}
+
+.about__feature-description--dark {
+  color: #a0aec0;
 }
 
 .about__team {
   padding: 3rem 0;
   background-color: #f9fafb;
+  transition: background-color 0.3s ease;
+}
+
+.about__team--dark {
+  background-color: #1a1a1a;
 }
 
 .about__team-grid {
@@ -117,6 +177,11 @@
 
 .about__team-member {
   text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.about__team-member--dark {
+  background-color: #2d2d2d;
 }
 
 .about__team-avatar {
@@ -139,9 +204,19 @@
   color: #111827;
   margin-top: 1.5rem;
   margin-bottom: 0.25rem;
+  transition: color 0.3s ease;
+}
+
+.about__team-name--dark {
+  color: #ffffff;
 }
 
 .about__team-role {
   font-size: 0.875rem;
   color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.about__team-role--dark {
+  color: #a0aec0;
 } 

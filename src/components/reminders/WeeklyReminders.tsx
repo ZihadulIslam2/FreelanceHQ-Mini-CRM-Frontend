@@ -43,28 +43,33 @@ export const WeeklyReminders: React.FC = () => {
   };
 
   return (
-    <Card>
-      <Title level={4}>
-        <ClockCircleOutlined /> Reminders Due This Week
+    <Card className="w-full">
+      <Title level={4} className="mb-4">
+        <ClockCircleOutlined className="mr-2" /> Reminders Due This Week
       </Title>
       <List
         loading={loading}
         dataSource={reminders}
+        className="weekly-reminders-list"
         renderItem={(reminder) => {
           const status = getReminderStatus(reminder.dueDate);
           return (
-            <List.Item>
+            <List.Item className="p-4 hover:bg-gray-50 transition-colors duration-200">
               <List.Item.Meta
                 title={
-                  <Space>
-                    {reminder.title}
-                    <Tag color={status.color}>{status.text}</Tag>
+                  <Space className="flex-wrap">
+                    <Text strong className="text-lg">
+                      {reminder.title}
+                    </Text>
+                    <Tag color={status.color} className="text-sm">
+                      {status.text}
+                    </Tag>
                   </Space>
                 }
                 description={
-                  <Space direction="vertical">
-                    <Text>{reminder.description}</Text>
-                    <Text type="secondary">
+                  <Space direction="vertical" className="mt-2">
+                    <Text className="text-gray-600">{reminder.description}</Text>
+                    <Text type="secondary" className="text-sm">
                       Due: {format(new Date(reminder.dueDate), 'PPP p')}
                     </Text>
                   </Space>

@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2rem;
   height: 64px;
   background: var(--background-primary);
   box-shadow: var(--card-shadow);
@@ -10,6 +9,17 @@
   border-bottom: 1px solid var(--border-color);
   position: relative;
   z-index: 50;
+  width: 100%;
+}
+
+.navbar__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .navbar__left {
@@ -281,6 +291,10 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .navbar {
+    padding: 0;
+  }
+  
+  .navbar__container {
     padding: 0 1rem;
   }
 
